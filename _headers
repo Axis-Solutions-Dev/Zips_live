@@ -1,0 +1,33 @@
+# ─── Static assets with content hashes (immutable) ──────────────────────────
+# Vite outputs hashed filenames like main-AbCd1234.js — safe to cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ─── WebP images in /public ───────────────────────────────────────────────────
+# Cached for 30 days with stale-while-revalidate for instant reloads
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/home/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# ─── Other images ─────────────────────────────────────────────────────────────
+/*.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/*.svg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# ─── Fonts ────────────────────────────────────────────────────────────────────
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# ─── HTML — never cache (always fresh) ───────────────────────────────────────
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
